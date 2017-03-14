@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		body{
+			background-color: black;
+		}
+		.zoom{
+			width: 78px;
+			height: 78px;
+			overflow: hidden;
+			float: left;
+			position: relative;
+		}
+		.zoom img{
+			transition:all 0.4s ease 0s;
+		}
+		.zoom:hover img{
+			transform:scale(1.3);
+		}
+		.zoom::before{
+			content:"";
+			width: 78px;
+			height: 78px;
+			position: absolute;
+			top: 0;
+			left: 0;
+			z-index: 10;
+			background-color: rgb(0,0,0);
+			opacity: 0.66;
+			transition:all 0.4s ease 0s;
+		}
+		.zoom:hover::before{
+			opacity: 0;
+		}
+		.zoom::after{
+			content:"";
+			position: absolute;
+			width: 78px;
+			height: 78px;
+			top: 0px;
+			left: 0px;
+			background-color: black;
+			opacity: 0.66;
+			border-radius: 50%;
+			transform:scale(0);
+			transition:all 0.4s ease 0s;
+		}
+		.zoom:hover::after{
+			transform:scale(1.2);
+			opacity: 0;
+		}
+	</style>
+</head>
+<body>
+ 
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript">
+		for(var i = 0 ; i < 99 ; i++){
+			// 链式语法
+			$("<div></div>").addClass('zoom').html("<img src='images/mingxing/"+ i + ".jpg' />").appendTo("body");
+		}
+	</script>
+</body>
+</html>

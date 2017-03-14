@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		div{
+			border: 1px solid #000;
+			width: 560px;
+			height: 300px;
+			margin: 100px;
+			/*景深*/
+			perspective:600px;
+		}
+		div:nth-child(1) img{
+			transform:rotateX(30deg);
+			transition:all 1s ease 0s;
+		}
+
+		div:nth-child(2) img{
+			transform:rotateY(30deg);
+			transition:all 1s ease 0s;
+		}
+		
+
+		div:nth-child(3) img{
+			transform:rotateY(30deg) rotateX(30deg);
+			transition:all 1s ease 0s;
+		}
+
+		div:nth-child(4) img{
+			transform:rotateX(30deg) rotateY(30deg);
+			transition:all 1s ease 0s;
+		}
+
+		div:hover img{
+			transform:none;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="images/gou.jpg" alt="">
+	</div>
+
+	<div>
+		<img src="images/gou.jpg" alt="">
+	</div>
+
+	<div>
+		<img src="images/gou.jpg" alt="">
+	</div>
+
+	<div>
+		<img src="images/gou.jpg" alt="">
+	</div>
+</body>
+</html>

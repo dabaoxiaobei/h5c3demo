@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>3D相册</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+		}
+		body{
+			background-color: black;
+			overflow: hidden;
+		}
+		.stage{
+			width: 900px;
+			height: 520px;
+			margin: 50px auto;
+			border: 1px solid #000;
+			position: relative;
+			perspective:800px;
+		}
+		.stage ul{
+			list-style: none;
+		}
+		.stage ul li{
+			width: 600px;
+			height: 320px;
+			position: absolute;
+			top: 100px;
+			left: 150px;
+			transition:all 0.4s ease 0s;
+		}
+		.stage ul li img{
+			width: 100%;
+			height: 100%;
+		}
+		.bar{
+			width: 900px;
+			height: 30px;
+			background-color: #eee;
+			position: absolute;
+			bottom: 0;
+			left: 0;
+			z-index: 9999;
+			border-radius: 10px;
+		}
+		.bar b{
+			width: 100px;
+			height: 30px;
+			background-color: orange;
+			position: absolute;
+			top: 0;
+			left: 0;
+			border-radius: 10px;
+		}
+	</style>
+</head>
+<body>
+	<div class="stage">
+		<ul>
+			<li><img src="images/aoyun/0.jpg" ></li>
+			<li><img src="images/aoyun/1.jpg" ></li>
+			<li><img src="images/aoyun/2.jpg" ></li>
+			<li><img src="images/aoyun/3.jpg" ></li>
+			<li><img src="images/aoyun/4.jpg" ></li>
+			<li><img src="images/aoyun/5.jpg" ></li>
+			<li><img src="images/aoyun/6.jpg" ></li>
+			<li><img src="images/aoyun/7.jpg" ></li>
+			<li><img src="images/aoyun/8.jpg" ></li>
+			<li><img src="images/aoyun/9.jpg" ></li>
+			<li><img src="images/aoyun/10.jpg" ></li>
+			<li><img src="images/aoyun/11.jpg" ></li>
+		</ul>
+		<div class="bar">
+			<b></b>
+		</div>
+	</div>
+
+	<script type="text/javascript" src="js/jquery-1.12.3.min.js"></script>
+	<script type="text/javascript" src="js/jquery-ui.min.js"></script>
+	<script type="text/javascript" src="js/jquery.mousewheel.min.js"></script>
+	<script type="text/javascript">
+
+		function set(center){
+			$(".stage ul li:lt(" + center +  ")").each(function(i){
+				$(this).css("transform","rotateY(50deg) translateX(" + ((-50 * (center - i)) - 50) + "px) translateZ(" + ((-50 * (center - i)) - 100) + "px)");
+			});
+			
+			$(".stage ul li").eq(center).css("transform","translateZ(80px)").css("z-index",1000);
+
+			$(".stage ul li:gt(" + center +  ")").each(function(i){
+				$(this).css("transform","rotateY(-50deg) translateX(" + ((50 * i) + 50) + "px) translateZ(" + ((-50 * i) - 100) + "px)").css("z-index",(999-i));
+			});
+		}
+
+
+		//图片总数
+		var amount = $("li").length;
+		//计算b的宽度
+		var bwidth = 900 / amount;
+		$("b").css("width",bwidth);
+		//设置图片
+		set(0);
+
+		var idx = 0; //咯噔
+		//b的拖拽
+		$("b").draggable({
+			"containment" : "parent",
+			"drag" : function(evnet,ui){
+				var temp = parseInt(ui.position.left / bwidth);
+				//如果拖拽的时候，产生了值的变化，那么设置新的图片位置
+				if(temp != idx){
+					idx = temp;
+					set(idx);
+				}
+			}
+		});
+
+		//滚轮事件
+		$(document).mousewheel(function(event,delta){
+			// 阻止默认事件
+			event.preventDefault();
+			 
+			idx -= delta;
+			if(idx < 0){
+				idx = 0;
+			}
+			if(idx > amount - 1){
+				idx = amount - 1;
+			}
+
+			set(idx);
+
+			$("b").css("left",bwidth * idx);
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 560px;
+			height: 300px;
+			border: 1px solid #000;
+			perspective:300px;
+		}
+		div img{
+			transition:all 1s ease 0s;
+			transform:none;
+		}
+		div.out img{
+			transform:rotateX(30deg) rotateY(30deg) translateZ(400px) ;
+		}
+	</style>
+</head>
+<body>
+	<input id="btn1" type="button" value="去月球！">
+	 
+	<div id="box">
+		<img src="images/gou.jpg" alt="">
+	</div>
+
+	<script type="text/javascript">
+		var btn1 = document.querySelector("#btn1");
+		var box = document.querySelector("#box");
+
+		btn1.onclick = function(){
+			box.className = "out";
+		}
+	</script>
+</body>
+</html>

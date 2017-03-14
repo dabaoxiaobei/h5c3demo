@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>旋转的angelababy</title>
+	<style type="text/css">
+		div{
+			width: 258px;
+			height: 258px;
+			perspective:309px;
+			position: relative;
+		}
+ 		div img{
+ 			position: absolute;
+ 			top: 0;
+ 			left: 0;
+ 			backface-visibility:hidden;
+ 			transition:all 1s ease 0s;
+ 			border-radius: 50%;
+ 		}
+ 		div .xiaoming{
+ 			transform:rotateX(-540deg);
+ 		}
+ 		div:hover .xiaoming{
+ 			transform:rotateX(0);
+ 		}
+		div:hover .baby{
+ 			transform:rotateX(540deg);
+ 		}
+	</style>
+</head>
+<body>
+	<div>
+		<img class="xiaoming" src="images/xiaoming.png" alt="">
+		<img class="baby" src="images/baby.png" alt="">
+	</div>
+</body>
+</html>

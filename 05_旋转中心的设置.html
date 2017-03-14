@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<style type="text/css">
+		div{
+			width: 258px;
+			height: 258px;
+			border: 1px solid #000;
+			margin: 100px;
+		}
+		img{
+			transform-origin:10px 10px;
+			transform:rotate(30deg);
+			transition:all 0.2s cubic-bezier(0.23, 3.26, 0.84, 0.11) 0s;
+		}
+		div:hover img{
+			transform:none;
+		}
+
+		div:nth-child(2) img{
+			transform-origin:100% 0%;
+		}
+	</style>
+</head>
+<body>
+	<div>
+		<img src="images/baby.png" alt="">
+	</div>
+
+	<div>
+		<img src="images/baby.png" alt="">
+	</div>
+</body>
+</html>
